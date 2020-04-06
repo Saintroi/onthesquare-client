@@ -136,11 +136,11 @@ const Purpose = styled.div`
     margin-bottom: 20px;
     width: 100%;
     flex: 2;
-    padding: 10px 30px 0 30px;
+    padding-top: 10px;
 
     p{
         font-size: 2vmin;
-        margin: 0 30px 0 30px;
+        margin: 0 80px 0 80px;
     }
 
     h1{
@@ -156,7 +156,7 @@ const About = styled.div`
     border-radius: 0px;
     width: 100%;
     flex: 2;
-    padding: 10px 30px 20px 30px;
+    padding: 10px 0px 20px 0px;
 
     h1{
         font-size: 3vmin;
@@ -178,7 +178,7 @@ const CBD = styled.div`
     border-radius: 0px;
     width: 80%;
     flex: 2;
-    padding: 10px 30px 20px 30px;
+    padding: 10px 0px 20px 0px;
 
 h1{
     text-align: center;
