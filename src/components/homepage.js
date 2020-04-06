@@ -11,7 +11,7 @@ const MainWrap = styled.div`
   align-items: center;
   z-index: 98;
   font-family: 'Montserrat', sans-serif;
-
+  overflow-x: hidden;
 `;
 
 const Cover = styled.div`
@@ -58,7 +58,7 @@ a{
     overflow: hidden;
     padding: 0;
     position: relative;
-}
+    }
 
 iframe{
     box-sizing: border-box;
@@ -98,42 +98,34 @@ h2{
 
 &:hover{
     background-position: left bottom;
-
 }
 
 `;
 
 const Contact = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
     color: white;
     text-align: center;
     background-color: ${(props) => props.theme.altAccentColor};
-    border-radius: 20px;
-    margin: 10px;
-    width: 60%;
+    border-radius: 0px;
+    width: 100%;
     flex: 2;
     padding: 0px 10px 10px 10px;
 
-p{
-    font-size: 1.5vmin;
-}
+    p{
+        font-size: 1.5vmin;
+    }
 
-hr{
-    width: 100%;
-    height: 0;
-    border: none;
-}
-a{
+    h1{
+        font-size: 3vmin;
+        width: 100%;
+        margin: 10px;
+    }
+
+    a{
     color: white;
     font-size: 2vmin;
-
-    &:hover{
-        color: ${(props) => props.theme.altBackgroundColor}
+    text-align: center;
     }
-}
 `;
 
 const Purpose = styled.div`
@@ -144,12 +136,18 @@ const Purpose = styled.div`
     margin-bottom: 20px;
     width: 100%;
     flex: 2;
-    padding: 0 30px 0 30px;
+    padding: 10px 30px 0 30px;
 
-p{
-    font-size: 2vmin;
-    margin: 0 30px 0 30px;
-}
+    p{
+        font-size: 2vmin;
+        margin: 0 30px 0 30px;
+    }
+
+    h1{
+        font-size: 3vmin;
+        width: 100%;
+        margin: 10px;
+     }
 `;
 const About = styled.div`
     color: white;
@@ -158,14 +156,18 @@ const About = styled.div`
     border-radius: 0px;
     width: 100%;
     flex: 2;
-    padding: 0 30px 20px 30px;
+    padding: 10px 30px 20px 30px;
 
+    h1{
+        font-size: 3vmin;
+        width: 100%;
+        margin: 10px;
+    }
 
-
-p{
-    font-size: 2vmin;
-    margin: 0 30px 0 30px;
-}
+    p{
+        font-size: 2vmin;
+        margin: 0 30px 0 30px;
+    }
 
 `;
 
@@ -176,10 +178,13 @@ const CBD = styled.div`
     border-radius: 0px;
     width: 80%;
     flex: 2;
-    padding: 0 30px 20px 30px;
+    padding: 10px 30px 20px 30px;
 
 h1{
     text-align: center;
+    font-size: 3vmin;
+    width: 100%;
+    margin: 10px;
 }
 
 p{
@@ -196,7 +201,7 @@ function Homepage(props) {
     <MainWrap>
         <Cover>
             <div class="iframe-container">
-                <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>\
+                <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1" frameborder="0" scrolling="no" allow="autoplay;  fullscreen" allowfullscreen></iframe>\
             </div>
             <h1>ON THE SQUARE ENTERPRISES</h1>
             <p>
@@ -245,8 +250,7 @@ function Homepage(props) {
             </p>
         </CBD>
         <Contact>
-            <h1>CONTACT US</h1>
-            <hr></hr>
+            <h1>Contact Us</h1>
             <a href="mailto:info@onthesquarecbd.com">info@onthesquarecbd.com</a>
         </Contact>
     </MainWrap>
