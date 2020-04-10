@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import { Login, ErrorBoundary, Homepage, Footer } from './components';
+import { Login, ErrorBoundary, Homepage, Footer, Store } from './components';
 import GlobalFonts from './fonts/fonts';
 import './App.css';
 
@@ -42,12 +42,9 @@ function App(props){
       <ThemeProvider theme={theme}>
         <AppWrapper key='app'>
           <GlobalFonts />
-          <Homepage />
+          <Route exact path='/' component={Homepage} />
+          <Route exact path='/store' component={Store}/>
           <Footer />
-          <Route exact path='/store' component={() => { 
-              window.location.href = 'https://onthesquarecbd.com/'; 
-              return null;
-              }}/>
         </AppWrapper>
       </ThemeProvider>
     </ErrorBoundary>

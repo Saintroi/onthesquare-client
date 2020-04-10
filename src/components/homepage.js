@@ -20,7 +20,7 @@ const Cover = styled.div`
     overflow: hidden;
     flex: 4;
     height: 100vh;
-    width: 99vw;
+    width: 100vw;
     align-self: stretch;
     text-align: center;
 
@@ -200,8 +200,8 @@ function Homepage(props) {
   return (
     <MainWrap>
         <Cover>
-            <div class="iframe-container">
-                <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1" frameborder="0" scrolling="no" allow="autoplay;  fullscreen" allowfullscreen></iframe>\
+            <div className="iframe-container">
+                <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1" frameBorder="0" scrolling="no" allow="autoplay;  fullscreen" allowFullScreen></iframe>\
             </div>
             <h1>ON THE SQUARE ENTERPRISES</h1>
             <p>
