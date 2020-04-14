@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import { Store } from '.'
 
 // styles
 
@@ -12,6 +13,7 @@ const MainWrap = styled.div`
   z-index: 98;
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 `;
 
 const Cover = styled.div`
@@ -90,6 +92,7 @@ h2{
     font-size: 2vmin;
     font-weight: bold;
     top: 50%;
+    margin: 15px;
 }
 
 &:focus, &:active, &:hover{
@@ -156,7 +159,7 @@ const About = styled.div`
     border-radius: 0px;
     width: 100%;
     flex: 2;
-    padding: 10px 0px 20px 0px;
+    padding: 20px 0px 30px 0px;
 
     h1{
         font-size: 3vmin;
@@ -196,6 +199,11 @@ p{
 //JSX
 
 function Homepage(props) {
+    const storeRef = useRef(null);
+
+    const scrollToStore = () => {
+        storeRef.current.scrollIntoView({behavior: 'smooth'})
+    }
 
   return (
     <MainWrap>
@@ -208,8 +216,9 @@ function Homepage(props) {
                 On the Square Enterprises is proud to provide trusted and tested Veteran Farmed CBD products to our Brothers and their families.
                 Type in discount code 10OFF at checkout for a 10% discount on your order!
                 </p>
-            <StyledLink href='https://onthesquarecbd.com/'><h2>THC Free and Pure CBD Products</h2></StyledLink>
+            <StyledLink onClick={scrollToStore}><h2>THC Free and Pure CBD Products</h2></StyledLink>
         </Cover>
+        <div ref={storeRef}><Store></Store></div>
         <Purpose>
             <h1>Our Purpose</h1>
             <p>
