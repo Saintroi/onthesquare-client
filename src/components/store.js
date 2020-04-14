@@ -10,15 +10,19 @@ const Wrap = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.BackgroundColor};
-  height: 100vh;
+  height: 100%;
   width: 90%;
-  margin: 30px;
+  margin: 20px 0px 0px 5%;
   overflow: hidden;
 
 p{
   font-size: 1vmin;
   padding: 20px;
   text-align: center;
+}
+
+.ecwid{
+  height: 100%;
 }
 `;
 

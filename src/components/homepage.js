@@ -13,7 +13,6 @@ const MainWrap = styled.div`
   z-index: 98;
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 `;
 
 const Cover = styled.div`
