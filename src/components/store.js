@@ -47,7 +47,9 @@ const Wrap = styled.div`
 
 
   @media only screen and (max-width: 767px){
-    width: 90%;
+    width: 90vw;
+    margin: 0px;
+
 
     #my-categories-22606304{
       visibility: visible;
