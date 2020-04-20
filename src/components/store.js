@@ -62,6 +62,7 @@ function Store(props) {
   const storeDiv = useRef(null);
   const scriptRef = useRef(null);
 
+  window.localStorage.setItem("show_ecwid_logs","true")
   window.ecwid_script_defer = true;
   window.ecwid_dynamic_widgets = true;
   window.ec = window.ec || Object();
