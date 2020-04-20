@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.0.0",
+    "@vimeo/player": "^2.11.0",
     "apollo-boost": "^0.4.3",
     "apollo-client": "^2.6.3",
     "eslint-plugin-react-hooks": "^2.4.0",

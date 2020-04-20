@@ -23,14 +23,13 @@ const theme = {
 const AppWrapper = styled.div`
   position: relative;
   background-color: ${theme.backgroundColor};
-  grid-template-areas:
-  "nav"
-  "content"
+  grid-template-areas:  "content"
   "foot";
   grid-template-columns: auto;
-  grid-template-rows: 150px calc(100vh - 250px) 100px;
+  grid-template-rows: calc(100vh - 100px) 100px;
   height: 100vh;
   overflow-y: scroll;
+  gap: 5px;
 `;
 
 // JSX

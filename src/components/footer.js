@@ -10,13 +10,19 @@ const Wrap = styled.div`
   justify-content: center;
   align-items: flex-end;
   background-color: ${(props) => props.theme.BackgroundColor};
-  height: 100px;
+  height: 60px;
+  margin-top: 0px;
 
 p{
   font-size: 1vmin;
-  padding: 20px;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 20px 10px 20px;
   text-align: center;
+}
+@media only screen and (max-width: 767px){
+  p{
+    font-size: 1.5vmin;
+    margin: 5px;
+  }
 }
 `;
 

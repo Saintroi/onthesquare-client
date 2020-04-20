@@ -7,6 +7,8 @@ import styled from 'styled-components';
 const Wrap = styled.div`
   grid-area: content;
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.BackgroundColor};
@@ -15,15 +17,43 @@ const Wrap = styled.div`
   margin: 20px 0px 0px 5%;
   overflow: hidden;
 
-p{
-  font-size: 1vmin;
-  padding: 20px;
-  text-align: center;
-}
+  p{
+    font-size: 1vmin;
+    padding: 20px;
+    text-align: center;
+  }
 
-.ecwid{
-  height: 100%;
-}
+  .ecwid{
+    height: 100%;
+  }
+
+  #my-categories-22606304{
+    visibility: hidden;
+    margin-bottom: 30px;
+    width: 20%;
+
+    .horizontal-menu-button{
+      color: ${(props) => props.theme.altBackgroundColor} !important;
+      text-align: center;
+    }
+  }
+
+  #my-search-22606304{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+
+
+  @media only screen and (max-width: 767px){
+    width: 90%;
+
+    #my-categories-22606304{
+      visibility: visible;
+    } 
+
+    }
 `;
 
 //JSX
@@ -31,6 +61,7 @@ p{
 function Store(props) {
   const storeDiv = useRef(null);
   const scriptRef = useRef(null);
+
   window.ecwid_script_defer = true;
   window.ecwid_dynamic_widgets = true;
   window.ec = window.ec || Object();
@@ -39,8 +70,18 @@ function Store(props) {
   window._xnext_initialization_scripts = [{
     widgetType: 'ProductBrowser',
     id: 'my-store-22606304',
-    arg: ["id=productBrowser"]
-  }
+    arg: ["id=productBrowser", "views=grid(20,3)"]  },
+    {
+      widgetType: 'CategoriesV2',
+      id: 'my-categories-22606304',
+      arg: ["id=categoriesV2"]
+    }
+    ,
+    {
+      widgetType: 'SearchWidget',
+      id: 'my-search-22606304',
+      arg: ["id=searchWidget"]
+    }
   ];
 
   var script = document.createElement('script');
@@ -51,7 +92,6 @@ function Store(props) {
   script.ref=scriptRef;
 
 
-
 useEffect(() => {
     if(!scriptRef.current){
       storeDiv.current.appendChild(script);
@@ -60,9 +100,9 @@ useEffect(() => {
 
   return (
     <Wrap>
-      <div id="my-store-22606304" ref={storeDiv}></div>
-      <div id="my-categories-22606304"></div>
       <div id="my-search-22606304"></div>
+      <div id="my-categories-22606304"></div>
+      <div id="my-store-22606304" ref={storeDiv}></div>
       <div className="ec-cart-widget"></div>
     </Wrap>
 

@@ -1,7 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { Store } from '.'
+import Player from '@vimeo/player';
+import soundmuted from '../img/sound-muted.svg'
+import soundon from '../img/sound-on.svg'
 
 // styles
 
@@ -17,7 +20,7 @@ const MainWrap = styled.div`
 
 const Cover = styled.div`
     color: white;
-    background-color: ${(props) => props.theme.backgroundColor};
+    background-color: ${(props) => props.theme.altBackgroundColor};
     overflow: hidden;
     flex: 4;
     height: 100vh;
@@ -43,16 +46,12 @@ p{
     font-size: 2vmin;
 }
 
-a{
+img{
     position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 98;
-    width: 360px;
-    height: 55px;
-
-}
+    top: 95%;
+    left: 5%;
+    }
 
 .iframe-container {
     height: 100%;
@@ -73,10 +72,29 @@ iframe{
     width: 177.77777778vh;
   }
 
+  @media only screen and (max-width: 767px){
+    h1{
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0px;
+        font-size: 10vmin;
+        width: 100%;
+    }
+
+    p{
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 6vmin;
+        padding:5px;
+        margin: 0px;
+        width: 99%;
+    }
+    }
+
+
 `;
-
-
-
 
 const StyledLink = styled.a`
     background-color: ${(props) => props.theme.altAccentColor};
@@ -86,12 +104,22 @@ const StyledLink = styled.a`
     transition: all .3s ease-out;
     color: white;
     text-decoration: none;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 98;
+    white-space: nowrap;
+    width: 40%;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 h2{
     font-size: 2vmin;
     font-weight: bold;
-    top: 50%;
-    margin: 15px;
+
 }
 
 &:focus, &:active, &:hover{
@@ -102,6 +130,14 @@ h2{
     background-position: left bottom;
 }
 
+
+@media only screen and (max-width: 767px){
+        width: 100%;
+        top: 80%;
+        h2{
+            font-size: 5vmin;
+        }
+    }
 `;
 
 const Contact = styled.div`
@@ -113,10 +149,6 @@ const Contact = styled.div`
     flex: 2;
     padding: 0px 10px 10px 10px;
 
-    p{
-        font-size: 1.5vmin;
-    }
-
     h1{
         font-size: 3vmin;
         width: 100%;
@@ -124,9 +156,21 @@ const Contact = styled.div`
     }
 
     a{
-    color: white;
-    font-size: 2vmin;
-    text-align: center;
+        color: white;
+        font-size: 2vmin;
+        text-align: center;
+        width: 100%;
+    }
+
+    @media only screen and (max-width: 767px){
+        a{
+            font-size: 4vmin;
+        }
+        h1{
+            font-size: 6vmin;
+            width: 100%;
+            margin: 5px;
+     }
     }
 `;
 
@@ -150,6 +194,18 @@ const Purpose = styled.div`
         width: 100%;
         margin: 10px;
      }
+
+    @media only screen and (max-width: 767px){
+        p{
+            font-size: 4vmin;
+            margin: 0 30px 0 30px;
+        }
+        h1{
+            font-size: 6vmin;
+            width: 100%;
+            margin: 5px;
+     }
+    }
 `;
 const About = styled.div`
     color: white;
@@ -161,14 +217,25 @@ const About = styled.div`
     padding: 20px 0px 30px 0px;
 
     h1{
-        font-size: 3vmin;
-        width: 100%;
-        margin: 10px;
-    }
+            font-size: 4vmin;
+            width: 100%;
+            margin: 10px;
+        }
+        p{
+            font-size: 2vmin;
+            margin: 0 20px 0 20px;
+        }
 
-    p{
-        font-size: 2vmin;
-        margin: 0 30px 0 30px;
+
+    @media only screen and (max-width: 767px){
+        h1{
+            font-size: 6vmin;
+            margin: 5px;
+        }
+        p{
+            font-size: 4vmin;
+            margin: 0 10px 0 10px;
+        }
     }
 
 `;
@@ -193,23 +260,58 @@ p{
     font-size: 2vmin;
     margin: 0 30px 0 30px;
 }
+
+@media only screen and (max-width: 767px){
+        width: 100%;
+        p{
+            font-size: 4vmin;
+            margin: 0 30px 0 30px;
+        }
+        h1{
+            font-size: 6vmin;
+            width: 100%;
+            margin: 5px;
+     }
+    }
 `;
 
 //JSX
 
 function Homepage(props) {
     const storeRef = useRef(null);
+    const vidRef = useRef(null);
+    var player;
+
+    const [mute, setMute] = useState(true);
+
+    function controlPlayer(){
+        player = new Player(vidRef.current);
+        player.on('play', function() {
+            console.log('Cover Video Playing');
+        });
+    }
+
+    function changeVol(){
+        setMute(!mute);
+        mute ? player.setVolume(0.5) : player.setVolume(0);
+        console.log(mute);
+    }
 
     const scrollToStore = () => {
         storeRef.current.scrollIntoView({behavior: 'smooth'})
     }
 
+    useEffect(() => {
+        controlPlayer();
+    });
+
   return (
     <MainWrap>
         <Cover>
             <div className="iframe-container">
-                <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1" frameBorder="0" scrolling="no" allow="autoplay;  fullscreen" allowFullScreen></iframe>\
+                <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1?api=1" frameBorder="0" scrolling="no" allow="autoplay;  fullscreen" allowFullScreen ref={vidRef}></iframe>\
             </div>
+            <img src={mute ? soundmuted : soundon} onClick={changeVol} alt=""></img>
             <h1>ON THE SQUARE ENTERPRISES</h1>
             <p>
                 On the Square Enterprises is proud to provide trusted and tested Veteran Farmed CBD products to our Brothers and their families.
