@@ -294,7 +294,6 @@ function Homepage(props) {
     function changeVol(){
         setMute(!mute);
         mute ? player.setVolume(0.5) : player.setVolume(0);
-        console.log(mute);
     }
 
     const scrollToStore = () => {
@@ -309,7 +308,7 @@ function Homepage(props) {
     <MainWrap>
         <Cover>
             <div className="iframe-container">
-                <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1?api=1" frameBorder="0" scrolling="no" allow="autoplay;  fullscreen" allowFullScreen ref={vidRef}></iframe>\
+                <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1?api=1" frameBorder="0" scrolling="no" allow="autoplay;  fullscreen" allowFullScreen ref={vidRef}></iframe>
             </div>
             <img src={mute ? soundmuted : soundon} onClick={changeVol} alt=""></img>
             <h1>ON THE SQUARE ENTERPRISES</h1>
