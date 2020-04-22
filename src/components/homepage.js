@@ -91,6 +91,9 @@ iframe{
         margin: 0px;
         width: 99%;
     }
+    .iframe-container {
+        visibility: hidden;
+    }
     }
 
 
@@ -301,16 +304,16 @@ function Homepage(props) {
     }
 
     useEffect(() => {
-        controlPlayer();
+        (window.screen.width > 767) && controlPlayer();
     });
 
   return (
     <MainWrap>
         <Cover>
-            <div className="iframe-container">
+             <div className="iframe-container">
                 <iframe title="cover"src="https://player.vimeo.com/video/371399670?background=1?api=1" frameBorder="0" scrolling="no" allow="autoplay;  fullscreen" allowFullScreen ref={vidRef}></iframe>
             </div>
-            <img src={mute ? soundmuted : soundon} onClick={changeVol} alt=""></img>
+                { (window.screen.width > 767) ? <img src={mute ? soundmuted : soundon} onClick={changeVol} alt=""></img>: "" }
             <h1>ON THE SQUARE ENTERPRISES</h1>
             <p>
                 On the Square Enterprises is proud to provide trusted and tested Veteran Farmed CBD products to our Brothers and their families.
